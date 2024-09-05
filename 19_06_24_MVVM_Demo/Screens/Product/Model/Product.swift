@@ -6,7 +6,7 @@
 //
 
 import Foundation
-struct Product{
+struct Product : Decodable{
     var id : Int
     var title : String
     var price : Double
@@ -16,7 +16,7 @@ struct Product{
     var rating : Rating
 }
 
-struct Rating{
+struct Rating : Decodable{
     var rate : Double
     var count : Int
 }
