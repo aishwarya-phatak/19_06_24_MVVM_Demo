@@ -27,7 +27,9 @@ final class APIManager{
     func fetchProducts(completionHandler : @escaping Handler){
         guard let url = URL(string: Constant.API.productURL) else { return }
         
-        URLSession.shared.dataTask(with: url) { data, response, error in
+        let urlSession = URLSession(configuration: .default)
+        
+        let dataTask = URLSession.shared.dataTask(with: url) { data, response, error in
             
             do{
                 let products = try JSONDecoder().decode([Product].self, from: data!)
@@ -36,5 +38,7 @@ final class APIManager{
                 completionHandler(.failure(error as! DataError))
             }
         }
+        
+        dataTask.resume()
     }
 }

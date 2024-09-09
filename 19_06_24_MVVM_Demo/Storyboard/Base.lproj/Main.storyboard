@@ -41,7 +41,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="productTableView" destination="RKF-Fd-J8l" id="s4W-aF-3s0"/>
+                        <outlet property="productTableView" destination="RKF-Fd-J8l" id="7np-u3-ESA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

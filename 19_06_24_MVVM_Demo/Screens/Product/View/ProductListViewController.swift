@@ -14,8 +14,8 @@ class ProductListViewController: UIViewController,UITableViewDataSource,UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        registerXIBWithCell()
         initViewModel()
+        registerXIBWithCell()
         observeEvent()
     }
     
@@ -36,31 +36,32 @@ class ProductListViewController: UIViewController,UITableViewDataSource,UITableV
             event in
             
             switch event{
-            case .loading :
-                print("Product Data Loading")
-            case .stopLoading :
-                print("Stop Loading")
-            case .dataLoaded :
-                print("Products Data Loaded")
-                print(self!.viewModel.products)
-                
-            case .error(let error):
-                print("error -- \(error)")
-            }
-            
-            DispatchQueue.main.async {
-                self!.productTableView.reloadData()
+                case .loading :
+                    print("Product Data Loading")
+                case .stopLoading :
+                    print("Stop Loading")
+                case .dataLoaded :
+                    print("Products Data Loaded")
+                    DispatchQueue.main.async {
+                        self!.productTableView.reloadData()
+                    }
+                case .error(let error):
+                    print("error")
             }
         }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        self.viewModel.products.count
+        viewModel.products.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let productTableViewCell = self.productTableView.dequeueReusableCell(withIdentifier: "ProductTableViewCell", for: indexPath) as! ProductTableViewCell
-        productTableViewCell.product = self.viewModel.products[indexPath.row]
+        productTableViewCell.product = viewModel.products[indexPath.row]
         return productTableViewCell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 115.0
     }
 }

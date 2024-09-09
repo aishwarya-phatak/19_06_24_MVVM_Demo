@@ -17,10 +17,10 @@ final class ProductViewModel{
             switch response{
                  case .success(let products):
                     self.products = products
-                self.eventHandler!(.dataLoaded)
+                    self.eventHandler!(.dataLoaded)
                  case .failure(let error):
                     print(error)
-                self.eventHandler!(.error(error))
+                self.eventHandler!(.error(DataError.invalidResponse))
             }
         }
     }
